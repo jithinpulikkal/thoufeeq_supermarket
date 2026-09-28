@@ -34,12 +34,14 @@ function Logo({ light = false }) {
             className="flex min-w-[220px] items-center gap-[10px] max-[640px]:min-w-0"
             aria-label={`${siteData.brandName} home`}
         >
-            <img
-                src={siteData.logo}
-                alt={`${siteData.brandName} logo`}
-                className="h-12 w-12 object-contain max-[640px]:h-[41px] max-[640px]:w-[41px]"
-                onError={imageFallback}
-            />
+            {siteData.logo && (
+                <img
+                    src={siteData.logo}
+                    alt={`${siteData.brandName} logo`}
+                    className="h-12 w-12 object-contain max-[640px]:h-[41px] max-[640px]:w-[41px]"
+                    onError={imageFallback}
+                />
+            )}
             <span className={`grid leading-none text-leaf ${light ? "text-white" : ""}`}>
                 <strong className="font-display text-[21px] font-extrabold tracking-[.045em] max-[640px]:text-lg">
                     {siteData.brandName}
@@ -426,7 +428,7 @@ function About() {
                     <div className="relative aspect-[1.08] overflow-hidden rounded-lg bg-[#e7efd7]">
                         <div className="about-photo-placeholder absolute inset-0 flex flex-col items-center justify-center gap-3 bg-[linear-gradient(145deg,#e7efd7,#cadfae)] font-display text-sm font-bold text-[#538250]">
                             <img
-                                src="/data/images/family_shopping.png"
+                                src={siteData.aboutImage}
                                 alt="Shopping cart filled with groceries"
                                 loading="lazy"
                                 className="absolute inset-0 z-[1] h-full w-full object-contain p-7"
