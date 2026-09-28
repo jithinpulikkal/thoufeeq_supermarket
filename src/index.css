@@ -1,0 +1,125 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        font-family: "DM Sans", sans-serif;
+        color: #173b2b;
+        background: #fff;
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+        scroll-behavior: smooth;
+    }
+    * {
+        box-sizing: border-box;
+    }
+    body {
+        @apply m-0 min-w-[320px];
+    }
+    button,
+    a {
+        font: inherit;
+    }
+    a {
+        @apply text-inherit no-underline;
+    }
+    button:focus-visible,
+    a:focus-visible {
+        @apply outline outline-[3px] outline-sun outline-offset-4;
+    }
+    ::selection {
+        @apply bg-lime/40 text-forest;
+    }
+    h1,
+    h2,
+    h3,
+    p {
+        @apply mt-0;
+    }
+    h1,
+    h2 {
+        @apply font-display tracking-[-.045em];
+    }
+}
+
+@layer utilities {
+    .container {
+        @apply mx-auto w-[calc(100%-48px)] max-w-[1160px] max-[900px]:w-[calc(100%-40px)] max-[640px]:w-[calc(100%-36px)];
+    }
+    .animate-fade-up {
+        animation: fade-up 0.55s both;
+        animation-delay: calc(var(--card-index, 0) * 65ms);
+    }
+    .hero-decoration::before {
+        content: "";
+        @apply pointer-events-none absolute -right-[135px] -top-[260px] h-[510px] w-[510px] rounded-full border border-leaf/15 shadow-[0_0_0_54px_rgba(7,151,70,.025),0_0_0_110px_rgba(7,151,70,.022)];
+    }
+    .hero-image-placeholder::before {
+        content: "";
+        @apply absolute -bottom-[125px] -left-[30px] h-[220px] w-[220px] rounded-full bg-leaf/20 shadow-[78px_-36px_0_15px_rgba(177,214,50,.25),225px_26px_0_36px_rgba(7,151,70,.12)];
+    }
+    .hero-orbit {
+        @apply absolute z-[1] rounded-full border border-[#729c36]/30;
+    }
+    .orbit-one {
+        @apply right-3 top-0 h-[395px] w-[395px];
+    }
+    .orbit-two {
+        @apply -right-3 -top-[22px] h-[445px] w-[445px] border-dashed opacity-50;
+    }
+    .value-decoration::after {
+        content: "";
+        @apply pointer-events-none absolute -right-[11%] -top-[335px] h-[460px] w-[460px] rounded-full border border-lime/20 shadow-[0_0_0_46px_rgba(191,218,61,.04),0_0_0_94px_rgba(191,218,61,.03)];
+    }
+    .about-photo-placeholder::before {
+        content: "";
+        @apply absolute h-[170px] w-[170px] -translate-x-[60px] -translate-y-[60px] rounded-full bg-white/40 shadow-[240px_210px_0_20px_rgba(7,151,70,.13)];
+    }
+    .contact-decoration::after {
+        content: "";
+        @apply pointer-events-none absolute -right-[17%] -top-[285px] h-[390px] w-[390px] rounded-full border border-lime/20 shadow-[0_0_0_42px_rgba(194,215,61,.03),0_0_0_85px_rgba(194,215,61,.025)];
+    }
+    .nav-open {
+        @apply max-[640px]:flex;
+    }
+    .mobile-nav {
+        @apply max-[640px]:absolute max-[640px]:left-0 max-[640px]:right-0 max-[640px]:top-full max-[640px]:hidden max-[640px]:flex-col max-[640px]:items-stretch max-[640px]:gap-0 max-[640px]:border-t max-[640px]:border-[#edf1e8] max-[640px]:bg-white max-[640px]:px-5 max-[640px]:pb-[21px] max-[640px]:pt-[14px] max-[640px]:shadow-[0_15px_24px_rgba(6,61,40,.1)];
+    }
+    .mobile-nav a {
+        @apply max-[640px]:border-b max-[640px]:border-[#f0f2ed] max-[640px]:px-1 max-[640px]:py-[13px];
+    }
+    .mobile-nav .mobile-phone {
+        @apply hidden text-leaf max-[640px]:block max-[640px]:border-0;
+    }
+    .mobile-card-last {
+        @apply max-[640px]:col-span-2 max-[640px]:grid max-[640px]:grid-cols-[.8fr_1fr] max-[640px]:items-center max-[640px]:gap-[10px];
+    }
+    .mobile-card-last .category-image {
+        @apply max-[640px]:aspect-[1.5];
+    }
+    .mobile-card-last .category-meta {
+        @apply max-[640px]:p-[10px];
+    }
+    .reduced-motion,
+    .reduced-motion *,
+    .reduced-motion *::before,
+    .reduced-motion *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+@keyframes fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(13px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
