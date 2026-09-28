@@ -4,8 +4,9 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "install": "npm install",
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm run build",
     "preview": "vite preview"
   },
   "dependencies": {
