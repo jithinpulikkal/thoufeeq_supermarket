@@ -30,7 +30,7 @@ const imageFallback = (event) => {
 function Logo({ light = false }) {
     return (
         <a
-            href="#home"
+            href="home"
             className="flex min-w-[220px] items-center gap-[10px] max-[640px]:min-w-0"
             aria-label={`${siteData.brandName} home`}
         >
@@ -38,7 +38,7 @@ function Logo({ light = false }) {
                 <img
                     src={siteData.logo}
                     alt={`${siteData.brandName} logo`}
-                    className="h-12 w-12 object-contain max-[640px]:h-[41px] max-[640px]:w-[41px]"
+                    className="h-8 w-8 object-contain max-[640px]:h-[41px] max-[640px]:w-[41px]"
                     onError={imageFallback}
                 />
             )}
@@ -576,7 +576,7 @@ function Footer() {
                 <span>
                     © {new Date().getFullYear()} {siteData.copyright}
                 </span>
-                <a href="#home" className="hover:text-sun">
+                <a href="home" className="hover:text-sun">
                     Back to top ↑
                 </a>
             </div>

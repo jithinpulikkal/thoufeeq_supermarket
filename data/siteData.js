@@ -4,7 +4,7 @@ export const siteData = {
     descriptor: "WHOLESALE SUPERMARKET",
     tagline: "Good things for every day.",
     description: "A welcoming place to shop for everyday essentials, fresh picks and family favourites.",
-    logo: "",
+    logo: "/data/images/favicon.png",
     heroImage: "/data/images/shopping_cart.png",
     aboutImage: "/data/images/family_shopping.png",
     branch: "Thoufeeq Store, Kottakkal",
@@ -20,7 +20,7 @@ export const siteData = {
 
 export const content = {
     navigation: [
-        { label: "Home", href: "#home" },
+        { label: "Home", href: "/" },
         { label: "Categories", href: "#categories" },
         { label: "Our promise", href: "#promise" },
         { label: "About", href: "#about" },
