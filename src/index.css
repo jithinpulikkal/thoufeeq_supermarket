@@ -11,6 +11,8 @@
         font-synthesis: none;
         text-rendering: optimizeLegibility;
         scroll-behavior: smooth;
+        /* Keep in-page navigation targets clear of the sticky site header. */
+        scroll-padding-top: 82px;
     }
     * {
         box-sizing: border-box;
@@ -41,6 +43,12 @@
     h1,
     h2 {
         @apply font-display tracking-[-.045em];
+    }
+}
+
+@media (max-width: 640px) {
+    :root {
+        scroll-padding-top: 69px;
     }
 }
 
@@ -81,18 +89,6 @@
         content: "";
         @apply pointer-events-none absolute -right-[17%] -top-[285px] h-[390px] w-[390px] rounded-full border border-lime/20 shadow-[0_0_0_42px_rgba(194,215,61,.03),0_0_0_85px_rgba(194,215,61,.025)];
     }
-    .nav-open {
-        @apply max-[640px]:flex;
-    }
-    .mobile-nav {
-        @apply max-[640px]:absolute max-[640px]:left-0 max-[640px]:right-0 max-[640px]:top-full max-[640px]:hidden max-[640px]:flex-col max-[640px]:items-stretch max-[640px]:gap-0 max-[640px]:border-t max-[640px]:border-[#edf1e8] max-[640px]:bg-white max-[640px]:px-5 max-[640px]:pb-[21px] max-[640px]:pt-[14px] max-[640px]:shadow-[0_15px_24px_rgba(6,61,40,.1)];
-    }
-    .mobile-nav a {
-        @apply max-[640px]:border-b max-[640px]:border-[#f0f2ed] max-[640px]:px-1 max-[640px]:py-[13px];
-    }
-    .mobile-nav .mobile-phone {
-        @apply hidden text-leaf max-[640px]:block max-[640px]:border-0;
-    }
     .mobile-card-last {
         @apply max-[640px]:col-span-2 max-[640px]:grid max-[640px]:grid-cols-[.8fr_1fr] max-[640px]:items-center max-[640px]:gap-[10px];
     }
@@ -110,6 +106,35 @@
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+    }
+}
+
+@media (max-width: 640px) {
+    .mobile-nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        border-top: 1px solid #edf1e8;
+        background: #fff;
+        padding: 14px 1.25rem 21px;
+        box-shadow: 0 15px 24px rgba(6, 61, 40, .1);
+    }
+    .mobile-nav.is-open {
+        display: flex;
+    }
+    .mobile-nav a {
+        border-bottom: 1px solid #f0f2ed;
+        padding: 13px .25rem;
+    }
+    .mobile-nav .mobile-phone {
+        display: block;
+        border: 0;
+        color: #079746;
     }
 }
 

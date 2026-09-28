@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import {
-    ArrowDown,
     ArrowRight,
     ArrowUpRight,
     Menu,
@@ -21,6 +20,9 @@ const navigation = content.navigation;
 const categories = content.categories;
 const promises = content.promises;
 const contact = { ...siteData, directionsLabel: content.labels.directions };
+const assetUrl = (path) => (/^https?:\/\//i.test(path)
+    ? path
+    : `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}`);
 
 const icons = { Tag, ShieldCheck, Leaf, HeartHandshake, CarFront };
 const imageFallback = (event) => {
@@ -69,7 +71,8 @@ function Header() {
             <div className="container flex h-full items-center justify-between gap-[30px]">
                 <Logo />
                 <nav
-                    className={`mobile-nav relative flex items-center gap-[clamp(18px,2.6vw,36px)] ${open ? "nav-open" : ""}`}
+                    id="primary-navigation"
+                    className={`mobile-nav relative flex items-center gap-[clamp(18px,2.6vw,36px)] ${open ? "is-open" : ""}`}
                     aria-label={content.labels.mainNavigation}
                 >
                     {navigation.map((item) => (
@@ -82,9 +85,9 @@ function Header() {
                             {item.label}
                         </a>
                     ))}
-                    <a className="mobile-phone text-[13px] font-semibold" href={`tel:${contact.phone}`}>
+                    {/* <a className="mobile-phone text-[13px] font-semibold" href={`tel:${contact.phone}`}>
                         {contact.phoneDisplay}
-                    </a>
+                    </a> */}
                 </nav>
                 <a
                     className="inline-flex items-center gap-[9px] rounded-full bg-[#f0f6e8] px-[17px] py-3 text-xs font-bold text-[#0a713a] max-[900px]:hidden"
@@ -97,6 +100,7 @@ function Header() {
                     type="button"
                     aria-label={open ? content.labels.closeMenu : content.labels.openMenu}
                     aria-expanded={open}
+                    aria-controls="primary-navigation"
                     onClick={() => setOpen(!open)}
                 >
                     {open ? <X /> : <Menu />}
@@ -166,8 +170,8 @@ function Hero() {
                             className="absolute z-[2] h-full w-full object-contain p-5 max-[640px]:p-2"
                         />
                         <div className="hero-image-placeholder absolute inset-0 flex flex-col items-center justify-center gap-3 bg-[radial-gradient(ellipse_at_65%_38%,rgba(255,255,255,.8),transparent_27%),linear-gradient(145deg,#e7efcf,#d4e4b1_54%,#b9d79b)] font-display text-sm font-bold text-[#538250]">
-                            <ShoppingBasket size={48} />
-                            <span>{content.hero.imageCaption}</span>
+                            {/* <ShoppingBasket size={48} />
+                            <span>{content.hero.imageCaption}</span> */}
                         </div>
                     </div>
                     <div className="absolute bottom-7 right-0 z-[3] flex h-[153px] w-[153px] rotate-[8deg] flex-col items-center justify-center rounded-full border-[7px] border-[#f7f9f1] bg-sun text-center text-[#16402c] shadow-lg max-[900px]:right-[-4px] max-[900px]:h-[125px] max-[900px]:w-[125px] max-[640px]:bottom-[13px] max-[640px]:h-[110px] max-[640px]:w-[110px] max-[640px]:border-[5px]">
@@ -185,13 +189,6 @@ function Hero() {
                     <div className="hero-orbit orbit-two max-[900px]:h-[380px] max-[900px]:w-[380px] max-[640px]:right-0 max-[640px]:top-[-17px] max-[640px]:h-[325px] max-[640px]:w-[325px]" />
                 </div>
             </div>
-            <a
-                className="absolute bottom-[19px] left-1/2 grid h-[31px] w-[31px] -translate-x-1/2 place-items-center rounded-full border border-[#d9e4d4] text-[#508450] max-[640px]:hidden"
-                href="#categories"
-                aria-label={content.labels.scrollToCategories}
-            >
-                <ArrowDown size={16} />
-            </a>
         </section>
     );
 }
@@ -233,7 +230,7 @@ function Categories() {
                 <div className="grid grid-cols-5 gap-[15px] max-[900px]:grid-cols-3 max-[640px]:grid-cols-2 max-[640px]:gap-[11px]">
                     {categories.map((category, index) => (
                         <a
-                            href="#contact"
+                            href="#categories"
                             key={category.title}
                             style={{ "--card-index": index }}
                             className={`animate-fade-up rounded-[9px] border border-[#edf0e8] bg-white p-[11px] transition duration-300 hover:-translate-y-[5px] hover:shadow-[0_15px_34px_rgba(6,61,40,.09)] max-[640px]:p-2 ${index === categories.length - 1 ? "mobile-card-last" : ""}`}
@@ -242,7 +239,7 @@ function Categories() {
                                 className={`relative grid aspect-[1.17] place-items-center overflow-hidden rounded-md ${tones[category.tone] || tones.green} max-[640px]:aspect-[1.15]`}
                             >
                                 <img
-                                    src={category.image}
+                                    src={assetUrl(category.image)}
                                     alt={category.alt}
                                     loading="lazy"
                                     onError={imageFallback}
@@ -471,7 +468,7 @@ function About() {
 
 function Contact() {
     return (
-        <section id="contact" className="pb-[88px] max-[640px]:pb-[60px]">
+        <section id="contact" className="scroll-mt-[82px] pb-[calc(88px+82px)] max-[640px]:scroll-mt-[69px] max-[640px]:pb-[calc(60px+69px)]">
             <div className="container">
                 <div className="contact-decoration relative grid grid-cols-[.9fr_1.1fr] gap-[55px] overflow-hidden rounded-[10px] bg-[#0b482e] px-[clamp(28px,5vw,65px)] py-12 text-white max-[900px]:gap-[30px] max-[640px]:grid-cols-1 max-[640px]:gap-[26px] max-[640px]:px-[22px] max-[640px]:py-[31px]">
                     <div className="relative z-[1]">
